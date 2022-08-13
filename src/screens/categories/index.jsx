@@ -7,7 +7,10 @@ import { styles } from "./styles";
 
 const Categories = ({ navigation }) => {
   const onSelected = (item) => {
-    navigation.navigate("Products");
+    navigation.navigate("Products", {
+      categoryId: item.id,
+      name: item.name,
+    });
   };
   const renderItem = ({ item }) => (
     <CategoryItem item={item} onSelected={onSelected} />
