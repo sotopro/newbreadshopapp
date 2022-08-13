@@ -1,7 +1,7 @@
 import { useFonts } from "expo-font";
 import { ActivityIndicator } from "react-native";
 
-import Categories from "./screens/categories";
+import AppNavigator from "./navigation/index";
 
 export default function App() {
   const [loaded] = useFonts({
@@ -16,5 +16,5 @@ export default function App() {
   if (!loaded) {
     return <ActivityIndicator size="large" color="#0000ff" />;
   }
-  return <Categories />;
+  return <AppNavigator />;
 }
