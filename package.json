@@ -6,7 +6,12 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "lint": "eslint --ext .js,.jsx src",
+    "lint:fix": "eslint --ext .js,.jsx src --fix",
+    "prettier": "npx prettier --write 'src/**/*.{js,jsx}' --check",
+    "prettier:fix": "npm run prettier -- --write",
+    "format": "npm run lint:fix && npm run prettier:fix"
   },
   "dependencies": {
     "expo": "~46.0.6",
