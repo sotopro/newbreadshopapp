@@ -39,7 +39,13 @@ const ShopNavigator = () => {
           headerTitle: route.params.name,
         })}
       />
-      <Stack.Screen name="Product" component={ProductScreen} />
+      <Stack.Screen
+        name="Product"
+        component={ProductScreen}
+        options={({ route }) => ({
+          headerTitle: route.params.name,
+        })}
+      />
     </Stack.Navigator>
   );
 };
