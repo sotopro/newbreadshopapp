@@ -2,11 +2,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 
 import { colors } from "../constants/colors";
-import {
-  CategoriesScreen,
-  ProductScreen,
-  ProductsScreen,
-} from "../screens/index";
+import { CategoriesScreen, ProductScreen, ProductsScreen } from "../screens/index";
 import { isIOS } from "../utils/functions";
 
 const Stack = createNativeStackNavigator();
@@ -23,8 +19,7 @@ const ShopNavigator = () => {
         headerTitleStyle: {
           fontFamily: "Lato-Bold",
         },
-      }}
-    >
+      }}>
       <Stack.Screen
         name="Categories"
         component={CategoriesScreen}
