@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -7,17 +7,30 @@ import {
   Button,
   TouchableOpacity,
 } from "react-native";
+import { useDispatch } from "react-redux";
 
 import { colors } from "../../constants/colors";
+import { signup } from "../../store/actions/auth.actions";
 import { styles } from "./styles";
 
 const AuthScreen = ({ navigation }) => {
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const title = "Registro";
   const message = "¿Ya tienes una cuenta?";
-  const messageAction = "Registarse";
-  const messageTarget = "Registrarse";
-
-  const onHandleAuth = () => {};
+  const messageAction = "Registrate";
+  const messageTarget = "Registrate";
+  const onHandleChange = (value, type) => {
+    if (type === "email") {
+      setEmail(value);
+    } else {
+      setPassword(value);
+    }
+  };
+  const onHandleAuth = () => {
+    dispatch(signup(email, password));
+  };
   return (
     <KeyboardAvoidingView style={styles.containerKeyboard} behavior="padding">
       <View style={styles.container}>
@@ -26,27 +39,29 @@ const AuthScreen = ({ navigation }) => {
         <TextInput
           style={styles.input}
           placeholder="Ingrese su email"
-          placeholderTextColor={colors.gray}
+          placeholderTextColor={colors.placerholder}
           autoCapitalize="none"
           autoCorrect={false}
           keyboardType="email-address"
-          onChangeText={(text) => console.warn(text)}
+          onChangeText={(text) => onHandleChange(text, "email")}
+          value={email}
         />
         <Text style={styles.label}>Contraseña</Text>
         <TextInput
           style={styles.input}
           placeholder="Ingrese su contraseña"
-          placeholderTextColor={colors.gray}
+          placeholderTextColor={colors.placerholder}
           autoCapitalize="none"
           autoCorrect={false}
           secureTextEntry
-          onChangeText={(text) => console.warn(text)}
+          onChangeText={(text) => onHandleChange(text, "password")}
+          value={password}
         />
-        <Button title={title} color={colors.primary} onPress={onHandleAuth} />
+        <Button title={messageTarget} color={colors.primary} onPress={onHandleAuth} />
+
         <View style={styles.prompt}>
-          <Text style={styles.promptMessage}>{message}</Text>
           <TouchableOpacity onPress={() => console.warn(messageTarget)}>
-            <Text style={styles.promptButton}>{messageAction}</Text>
+            <Text style={styles.promptMessage}>{message}</Text>
           </TouchableOpacity>
         </View>
       </View>
