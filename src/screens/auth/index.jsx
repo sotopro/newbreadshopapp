@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 
 import { colors } from "../../constants/colors";
 import { signup } from "../../store/actions/auth.actions";
+import { isIOS } from "../../utils/functions";
 import { styles } from "./styles";
 
 const AuthScreen = ({ navigation }) => {
@@ -32,7 +33,7 @@ const AuthScreen = ({ navigation }) => {
     dispatch(signup(email, password));
   };
   return (
-    <KeyboardAvoidingView style={styles.containerKeyboard} behavior="padding">
+    <KeyboardAvoidingView style={styles.containerKeyboard} behavior={isIOS ? "padding" : "height"}>
       <View style={styles.container}>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.label}>Correo electronico</Text>
@@ -57,7 +58,12 @@ const AuthScreen = ({ navigation }) => {
           onChangeText={(text) => onHandleChange(text, "password")}
           value={password}
         />
-        <Button title={messageTarget} color={colors.primary} onPress={onHandleAuth} />
+        <Button
+          disabled={!(email && password)}
+          title={messageTarget}
+          color={colors.primary}
+          onPress={onHandleAuth}
+        />
 
         <View style={styles.prompt}>
           <TouchableOpacity onPress={() => console.warn(messageTarget)}>
