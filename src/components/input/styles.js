@@ -14,4 +14,10 @@ export const styles = StyleSheet.create({
     fontFamily: "Lato-Regular",
     marginBottom: 10,
   },
+  message: {},
+  helperText: {
+    fontFamily: "Lato-Bold",
+    fontSize: 12,
+    color: colors.error,
+  },
 });
