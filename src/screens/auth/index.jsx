@@ -1,14 +1,8 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  KeyboardAvoidingView,
-  Button,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, KeyboardAvoidingView, Button, TouchableOpacity } from "react-native";
 import { useDispatch } from "react-redux";
 
+import { Input } from "../../components";
 import { colors } from "../../constants/colors";
 import { signup, signin } from "../../store/actions/auth.actions";
 import { isIOS } from "../../utils/functions";
@@ -43,8 +37,7 @@ const AuthScreen = ({ navigation }) => {
     <KeyboardAvoidingView style={styles.containerKeyboard} behavior={isIOS ? "padding" : "height"}>
       <View style={styles.container}>
         <Text style={styles.title}>{title}</Text>
-        <Text style={styles.label}>Correo electronico</Text>
-        <TextInput
+        <Input
           style={styles.input}
           placeholder="Ingrese su email"
           placeholderTextColor={colors.placerholder}
@@ -53,9 +46,9 @@ const AuthScreen = ({ navigation }) => {
           keyboardType="email-address"
           onChangeText={(text) => onHandleChange(text, "email")}
           value={email}
+          label="Correo electronico"
         />
-        <Text style={styles.label}>Contraseña</Text>
-        <TextInput
+        <Input
           style={styles.input}
           placeholder="Ingrese su contraseña"
           placeholderTextColor={colors.placerholder}
@@ -64,6 +57,7 @@ const AuthScreen = ({ navigation }) => {
           secureTextEntry
           onChangeText={(text) => onHandleChange(text, "password")}
           value={password}
+          label="Contraseña"
         />
         <Button
           disabled={!(email && password)}
